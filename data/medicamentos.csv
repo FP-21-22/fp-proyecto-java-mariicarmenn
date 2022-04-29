@@ -1,0 +1,21 @@
+Nombre_medicamento,Tipo_medicamento,Codigo_enfermedad,Farmaceutica,Puntuacion,Indice_somatico,Fecha_catalogo
+efavirenz,Anatomico,Y212XXA,Actavis Mid Atlantic LLC,90.0,1848,04/12/2019
+paroxetine hydrochloride,Quimico,S82014P,American Health Packaging,90.0,1529,06/12/2019
+Simethicone,Anatomico,R1909,Kosan Kozmetik Sanayi ve Ticaret A.S.,110.0,1436,09/02/2020
+Famciclovir,Quimico,M4608,Carilion Materials Management,115.0,1250,04/12/2019
+Azithromycin,Terapeutico,S82262H,King Import Warehouse,100.0,1828,08/12/2019
+Strophanthus Nicotiana,Terapeutico,X008,Roerig,100.0,1453,06/12/2019
+Betamethasone Valerate,Anatomico,S45991S,TYA Pharmaceuticals,65.0,1949,05/12/2019
+mesalamine,Quimico,S90931D,Mylan Pharmaceuticals Inc.,65.0,1949,05/02/2020
+Divalproex Sodium,Terapeutico,S82236F,Procter & Gamble Manufacturing Co.,90.0,1848,04/02/2020
+Acetaminophen,Anatomico,T442X1D,HOMEOLAB USA INC.,150.0,1091,08/12/2019
+rifabutin,Quimico,A6004,davAgen Pharmaceutical LLC,100.0,1570,03/02/2020
+Fenofibrate,Terapeutico,F1121,Hospira Inc.,125.0,1280,02/02/2020
+Prednisone,Quimico,S82026R,Physicians Total Care Inc.,115.0,1913,07/12/2019
+alprazolam,Anatomico,S6034,Physicians Total Care Inc.,115.0,1913,07/02/2020
+Lamotrigine,Anatomico,S3123XD,Advance Pharmaceutical Inc.,130.0,1261,09/02/2020
+Botrytis cinerea,Anatomico,S66001D,Physicians Total Care Inc.,115.0,1250,04/02/2020
+piroxicam,Terapeutico,P7882,Proficient Rx LP,125.0,1280,02/12/2019
+hydrochloride,Quimico,S72324P,Uriel Pharmacy Inc.,130.0,1193,01/12/2019
+nifedipine,Anatomico,N323,Novartis Pharmaceutical Corporation,90.0,1529,06/02/2020
+Omeprazole,Anatomico,W1642XS,Carilion Materials Management,115.0,1621,02/02/2020
