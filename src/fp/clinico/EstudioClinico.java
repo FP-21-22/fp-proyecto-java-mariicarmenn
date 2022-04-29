@@ -30,4 +30,5 @@ public interface EstudioClinico {
 	//devuelve Map que realiza un cálculo
 	Map<String,Long> numeroPacientesPorGenero();
 	Map<String,Double> edadMediaPacientesPorPorGenero();
+	
 }

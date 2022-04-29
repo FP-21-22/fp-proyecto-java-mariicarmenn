@@ -58,6 +58,7 @@ public record PacienteEstudio(String id, String genero, Double edad,Boolean hipe
 		
 		return res;
 		
+		
 	}
 	
 	public static void main(String[] args){

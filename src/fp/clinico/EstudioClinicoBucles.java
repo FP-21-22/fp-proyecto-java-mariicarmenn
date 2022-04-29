@@ -34,6 +34,8 @@ public class EstudioClinicoBucles implements EstudioClinico {
 	public void incluyePaciente(PacienteEstudio paciente) {
 		// TODO Auto-generated method stub
 
+		
+		
 	}
 
 	@Override

@@ -20,6 +20,7 @@ public class EstudioClinicoStream implements EstudioClinico {
 
 	}
 
+	
 	@Override
 	public void incluyePacientes(Collection<PacienteEstudio> pacientes) {
 		// TODO Auto-generated method stub
