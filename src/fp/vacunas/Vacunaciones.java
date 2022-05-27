@@ -3,15 +3,13 @@ package fp.vacunas;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import Vinos_IS2_3_dia_17_05_2022.src.fp.vinos.Vino;
-import fp.clinico.PacienteEstudio;
+
+
 
 
 public class Vacunaciones {
@@ -76,11 +74,10 @@ public class Vacunaciones {
 	}
 	
 	public Map<String,Integer> maximoNumTotalVacunasporComunidad(){
-		
-		Map<String,List<Integer>>
-		
-		
-		return null;
+	
+			Map<String, List<Integer>> mapa = this.vacunaciones.stream().collect(Collectors.groupingBy(Vacunacion::comunidad, Collectors.collectingAndThen(Collectors.toList(),lista->lista.stream().map(valor->valor.numeroDePersonas()).collect(Collectors.toList()))));
+			Map<String, Integer> aux = mapa.entrySet().stream().collect(Collectors.toMap(e -> e.getKey(), e -> e.getValue().stream().max(Comparator.naturalOrder()).get()));
+			return aux;
 	}
 	
 }

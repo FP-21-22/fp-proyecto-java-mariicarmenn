@@ -1,6 +1,8 @@
 package fp.vacunas;
 
 import java.time.LocalDate;
+import java.util.List;
+
 import fp.utiles.Checkers;
 
 public record Vacunacion(LocalDate fecha, String comunidad, Integer pfizer, Integer moderna, Integer astrazeneca, Integer janssen, Integer numeroDePersonas) {
@@ -18,6 +20,8 @@ public record Vacunacion(LocalDate fecha, String comunidad, Integer pfizer, Inte
 	//REPRESENTACION COMO CADENA
 		//Por defecto asociado al record
 	
+
+
 	//ORDEN NATURAL
 	public int compareTo(Vacunacion v) {
 		// 
