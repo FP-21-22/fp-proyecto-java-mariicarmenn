@@ -23,29 +23,22 @@ public record Paciente(Persona persona,String codigoIngreso, LocalDateTime fecha
 	
 	//RESTRICCIONES
 	public Paciente{
-		Checkers.check("La fecha y hora tienen que ser anteriores a la fecha y hora actuales", fechaYHoraIngreso.isBefore(LocalDateTime.now()));
+		Checkers.check("La fecha y hora tienen que ser anteriores a la fecha y hora actuales", fechaYHoraIngreso.isBefore(LocalDateTime.now())||(fechaYHoraIngreso == LocalDateTime.now()));
 		
 	}
 	
 	//MÉTODOS CONSTRUCTORES
+	
 	public static Paciente of(String nombre, String apellidos, String dni, LocalDate fechaDeNacimiento,String codigoIngreso, LocalDateTime fechaYHoraIngreso) {
-		
 		Paciente res = new Paciente(Persona.of(nombre, apellidos, dni, fechaDeNacimiento), codigoIngreso, fechaYHoraIngreso);
 		
 		return res;
 	}
+	
 	public static Paciente of(Persona persona,String codigoIngreso, LocalDateTime fechaYHoraIngreso) {
-		
 		Paciente res = new Paciente(persona, codigoIngreso, fechaYHoraIngreso);
 		
 		return res;
 	}
 	
-	public static void main(String[] args){
-		Persona p1 = Persona.of("Juan, García Rodríguez, 12755078Z, 20/03/1965");
-		
-		Paciente p2 = Paciente.of(p1, "sakjdaj", LocalDateTime.of(2021, 03, 25, 21, 42));
-			
-		System.out.println(p2.horaIngreso());
-	}
 }

@@ -4,15 +4,16 @@ import fp.utiles.Checkers;
 public record PacienteEstudio(String id, String genero, Double edad,Boolean hipertension, Boolean enfermedadDelCorazon,TipoResidencia tipoDeResidencia,Double nivelMedioDeGlucosa) {
 	
 	//PROPIEDADES DERIVADAS
-	public Boolean factorDeRiesgo(Boolean hipertension, Double edad) {
-		
-		if(hipertension==true && edad>=40) {
-			return true;
+	public Boolean factorDeRiesgo() {
+		Boolean res= null;
+		if(this.hipertension && this.edad>40) {
+			res = true;
 		}
 		else {
-			return false;
+			res = false;
 		}
 		
+		return res;
 	}
 	
 	//RESTRICCIONES
@@ -23,7 +24,7 @@ public record PacienteEstudio(String id, String genero, Double edad,Boolean hipe
 
 	//REPRESENTACION COMO CADENA
 	public String toString() { 
-		return "Pelicula [id=" + id + ", edad=" + edad +  "]";
+		return "PacienteEstudio [id=" + id + ", edad=" + edad +  "]";
 	}
 	
 	//CRITERIO DE IGUALDAD
@@ -44,7 +45,7 @@ public record PacienteEstudio(String id, String genero, Double edad,Boolean hipe
 		PacienteEstudio res = new PacienteEstudio(id,genero,edad,hipertension,enfermedadDelCorazon,tipoDeResidencia,nivelMedioDeGlucosa);
 		return res;
 	}
-	public static PacienteEstudio of(String cadena) {
+	public static PacienteEstudio parseaPacienteEstudio(String cadena) {
 		String[] partes= cadena.split(";");
 		String id = partes[0];
 		String genero = partes[1];
@@ -58,11 +59,10 @@ public record PacienteEstudio(String id, String genero, Double edad,Boolean hipe
 		
 		return res;
 		
-		
 	}
 	
 	public static void main(String[] args){
-		PacienteEstudio p1 = PacienteEstudio.of("6306;Male;80;false;false;URBANA;83.84");
+		PacienteEstudio p1 = PacienteEstudio.parseaPacienteEstudio("6306;Male;80;false;false;URBANA;83.84");
 		System.out.println(p1);
 	}
 }

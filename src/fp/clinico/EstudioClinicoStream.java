@@ -1,108 +1,158 @@
 package fp.clinico;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
+
+
 
 public class EstudioClinicoStream implements EstudioClinico {
+	private List<PacienteEstudio> pacientes;
 	
-	
-	
+	public EstudioClinicoStream() {
+		this.pacientes = new ArrayList<>();
+	}
+	public EstudioClinicoStream(List<PacienteEstudio> lista) {
+		
+		this.pacientes = lista;
+	}
 	@Override
 	public Integer numeroPacientes() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.pacientes.size();
 	}
 
 	@Override
 	public void incluyePaciente(PacienteEstudio paciente) {
-		// TODO Auto-generated method stub
+		this.pacientes.add(paciente);
 
 	}
 
-	
 	@Override
 	public void incluyePacientes(Collection<PacienteEstudio> pacientes) {
-		// TODO Auto-generated method stub
+		this.pacientes.addAll(pacientes);
 
 	}
 
 	@Override
 	public void eliminaPaciente(PacienteEstudio paciente) {
-		// TODO Auto-generated method stub
+		this.pacientes.remove(paciente);
 
 	}
 
 	@Override
 	public Boolean estaPaciente(PacienteEstudio paciente) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.pacientes.contains(paciente);
 	}
 
 	@Override
 	public void borraEstudio() {
-		// TODO Auto-generated method stub
+		this.pacientes.clear();
 
 	}
 
 	@Override
 	public EstudioClinico of(String nombreFichero) {
-		// TODO Auto-generated method stub
-		return null;
+		List<PacienteEstudio> res = leeFichero(nombreFichero);
+		
+		return new EstudioClinicoStream(res);
+		
 	}
 
 	@Override
 	public List<PacienteEstudio> leeFichero(String nombreFichero) {
-		// TODO Auto-generated method stub
-		return null;
+			//
+			List<PacienteEstudio> res = new ArrayList<>();		
+			List<String> aux = null;
+			try {
+				aux = Files.readAllLines(Paths.get(nombreFichero));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			int cont = 0;
+			for(String e:aux) {
+				if(cont>0) {
+					PacienteEstudio p = PacienteEstudio.parseaPacienteEstudio(e);
+					res.add(p);
+				}
+				cont++;
+			}		
+			return res;
 	}
 
 	@Override
 	public Boolean todosPacienteSonDelTipo(TipoResidencia tipo) {
-		// TODO Auto-generated method stub
-		return null;
+		Boolean res = false;
+		res = this.pacientes.stream().allMatch(x->x.tipoDeResidencia().equals(tipo));
+		return res;
 	}
 
 	@Override
 	public Boolean existeAlgunPacienteDelTipo(TipoResidencia tipo) {
-		// TODO Auto-generated method stub
-		return null;
+		Boolean res= null;
+		res= this.pacientes.stream().anyMatch(x->x.tipoDeResidencia().equals(tipo));
+		return res;
 	}
 
 	@Override
 	public Integer numeroPacientesFactorRiesgo() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Predicate<PacienteEstudio> pr = x->x.factorDeRiesgo();
+		Integer res = (int)this.pacientes.stream().filter(pr).count();
+		return res;
 	}
 
 	@Override
 	public Double edadMediaPacientesConFactorRiesgo() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Double res = this.pacientes.stream()
+				.filter(x->x.factorDeRiesgo())
+				.mapToDouble(x->x.edad())
+				.average().orElse(0);
+		return res;
 	}
 
 	@Override
 	public List<PacienteEstudio> filtraPacientesPorEdad(Double edad) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.pacientes.stream().
+				filter(x->x.edad().equals(edad)).
+				collect(Collectors.toList());
 	}
 
 	@Override
 	public Map<String, List<PacienteEstudio>> agruparPacientesEdadMayorQuePorGenero(Double edad) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return this.pacientes.stream()
+				.filter(x->x.edad()>edad)
+				.collect(Collectors.groupingBy(PacienteEstudio::genero));
 	}
 
-	@Override
+	@Override //NO SE SI ESTA BIEN
 	public Map<String, Long> numeroPacientesPorGenero() {
-		// TODO Auto-generated method stub
-		return null;
+		return  this.pacientes.stream().
+				collect(Collectors.groupingBy(
+						PacienteEstudio::genero, 
+						Collectors.counting()
+						));
 	}
 
 	@Override
 	public Map<String, Double> edadMediaPacientesPorPorGenero() {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String,Double> mapa = this.pacientes.stream().
+				collect(Collectors.groupingBy(
+						PacienteEstudio::genero, 
+						Collectors.averagingDouble(x->x.edad())
+						));
+				return mapa;
 	}
 
 }

@@ -22,7 +22,7 @@ public record Persona(String nombre, String apellidos, String dni, LocalDate fec
 		
 	}
 	
-	//REPRESENTACIÓN COM CADENA
+	//REPRESENTACIÓN COMO CADENA
 		//viene asociado con el record
 	
 	//CRITERIO DE IGUALDAD
@@ -42,7 +42,7 @@ public record Persona(String nombre, String apellidos, String dni, LocalDate fec
 		 
 		return res;
 	}
-	public static Persona of(String cadena){
+	public static Persona parseaPersona(String cadena){
 		String[] partes = cadena.split(",");
 		String nombre = partes[0].trim();
 		String apellidos = partes[1].trim();
@@ -61,7 +61,7 @@ public record Persona(String nombre, String apellidos, String dni, LocalDate fec
 	
 	//METODO MAIN
 	public static void main(String[] args){
-		Persona p1 = Persona.of("Juan, García Rodríguez, 12755078Z, 20/03/1965");
+		Persona p1 = Persona.parseaPersona("Juan, García Rodríguez, 12755078Z, 20/03/1965");
 		System.out.println(p1);
 		
 	}

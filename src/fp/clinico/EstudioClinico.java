@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 public interface EstudioClinico {
+	
+	
 	// Propiedades de lista
 	Integer numeroPacientes();
 	void incluyePaciente(PacienteEstudio paciente);
